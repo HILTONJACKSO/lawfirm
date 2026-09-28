@@ -1,0 +1,133 @@
+// Import Custom Theme — must be first
+@use 'theme' as *;
+
+// Global Layout Fix
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+// Custom utilities and layout overrides
+.navbar {
+  background-color: $cl-navy !important;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+  
+  .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-family: $font-ui;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0.5rem;
+      width: 0;
+      height: 2px;
+      background-color: $cl-gold;
+      transition: width 0.3s ease;
+    }
+    
+    &:hover, &.active {
+      color: $cl-gold !important;
+      &::after {
+        width: calc(100% - 1rem);
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: $cl-navy;
+  color: white;
+  padding: 4rem 0 2rem;
+  
+  h5 { color: $cl-gold; margin-bottom: 1.5rem; }
+  a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s ease; }
+  a:hover { color: $cl-gold; }
+}
+
+.card-luxury {
+  background: white;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    
+    .card-title { color: $cl-gold; }
+  }
+}
+
+// Scroll Reveal System
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(4px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  &.slide-left { transform: translateX(-40px); }
+  &.slide-right { transform: translateX(40px); }
+  &.scale-up { transform: scale(0.95); }
+}
+
+// Staggered entry for grids
+@for $i from 1 through 12 {
+  .reveal-stagger-#{$i} {
+    transition-delay: #{$i * 0.1}s !important;
+  }
+}
+
+// Portal Components
+.bg-cream-portal { background-color: #F9F7F2 !important; }
+.text-charcoal { color: #1A1A1A !important; }
+.letter-spacing-widest { letter-spacing: 0.2em; }
+
+.portal-side-feature {
+  border-top: 1px solid rgba(184, 151, 77, 0.2);
+  border-left: 1px solid rgba(184, 151, 77, 0.2);
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  &:hover { background: rgba(184, 151, 77, 0.05); }
+}
+
+.portal-form-control {
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  background: white !important;
+  border-radius: 0 !important;
+  padding: 1.25rem !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  &:focus {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+    border-bottom-color: #B8974D !important;
+  }
+}
+
+.scales-watermark {
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 80%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}

@@ -1,0 +1,108 @@
+@use "sass:color";
+
+// Color Palette - Refined for Prestige
+$cl-navy:       #040B16;   // Deeper Navy
+$cl-gold:       #D4AF37;   // Official Logo Gold
+$cl-gold-light: #F2D06B;   // Logo Highlight Gold
+$cl-cream:      #F8F5F0;   // Subtle backdrop
+$cl-stone:      #EAE4DA;   // Divider/Card color
+$cl-charcoal:   #1C1C1C;   
+
+// Bootstrap Overrides
+$primary:       $cl-navy;
+$secondary:     $cl-gold;
+$body-bg:       $cl-cream;
+$body-color:    $cl-charcoal;
+
+// Fonts
+$font-display:  var(--font-display);
+$font-body:     var(--font-body);
+$font-ui:       var(--font-ui);
+
+// Global Styles
+:root {
+  --cl-navy:       #040B16;
+  --cl-gold:       #D4AF37;
+  --cl-cream:      #F8F5F0;
+  --cl-stone:      #EAE4DA;
+  --cl-charcoal:   #1C1C1C;
+}
+
+.bg-navy { background-color: $cl-navy !important; color: white; }
+.bg-cream { background-color: $cl-cream !important; }
+.text-gold { color: $cl-gold !important; }
+
+body {
+  font-family: $font-body;
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  font-family: $font-display;
+  color: $cl-navy;
+  position: relative;
+  margin-bottom: 2rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: $cl-gold;
+    margin-top: 0.5rem;
+  }
+}
+
+h4, h5, h6 {
+  font-family: $font-ui;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bg-stone { background-color: $cl-stone; }
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  &.visible {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+}
+
+// CTA Gold shimmer effect
+.btn-gold {
+  background-color: $cl-gold;
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: color.scale($cl-gold, $lightness: -9%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba($cl-gold, 0.3);
+
+    &::after {
+      left: 120%;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+  }
+}
