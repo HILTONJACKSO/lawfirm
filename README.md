@@ -119,4 +119,4 @@ See `backend/.env.example` and `frontend/.env.example` for all required environm
 
 ## License
 
-© 2024 The Century Law Offices. All rights reserved.
+© 2026 The Century Law Offices. All rights reserved.
